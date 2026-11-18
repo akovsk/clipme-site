@@ -591,6 +591,41 @@ footer a:hover{color:var(--text)}
   footer{grid-template-columns:1fr}
   .choice{grid-template-columns:1fr}
 }
+/* phone: compact hero, one-line niche switch, compact calculator and stat tiles */
+@media (max-width:640px){
+  .topbar{height:64px}
+  .hero{padding:24px 14px 28px!important;gap:22px;border-radius:20px}
+  .badge{font-size:12px;padding:5px 12px 5px 6px;text-align:left}
+  .hero h1.logo3d{margin-top:8px;padding-top:46px;gap:10px;flex-wrap:nowrap}
+  .mark-wrap{width:58px;height:58px}
+  .logo3d .word{font-size:13vw;text-shadow:1px 1px 0 var(--ex-1),2px 2px 0 var(--ex-2),3px 3px 0 var(--ex-3),4px 4px 0 var(--ex-3),5px 5px 0 var(--ex-4),6px 10px 16px rgba(0,0,0,.45)}
+  .t2-line{font-size:13.5vw;-webkit-text-stroke:1.5px var(--mint)}
+  .kicker{margin-top:12px;font-size:11px;letter-spacing:.24em}
+  .hero .lead{font-size:15px;margin-top:12px!important}
+  .who2{gap:8px;margin-top:14px}
+  .who2 li{padding:10px 12px;font-size:13px;text-align:center}
+  .who2 b{font-size:12px}
+  .hcalc{padding:18px 12px;gap:14px;border-radius:20px}
+  .hcalc .h3{font-size:18px}
+  .hcalc .seg{display:flex;grid-template-columns:none;overflow-x:auto;justify-content:flex-start;width:100%;scrollbar-width:none}
+  .hcalc .seg button{flex:none;padding:8px 12px;font-size:13px}
+  .hc-out .big{font-size:42px}
+  .hc-grid{gap:6px}
+  .hc-grid div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;text-align:left}
+  .hc-grid b{font-size:15px;white-space:nowrap}
+  .calc-note{font-size:12px}
+  .hero .cta{margin-top:0!important;width:100%}
+  .collage{max-width:300px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+  .stats li{flex-direction:column;align-items:flex-start;gap:8px;padding:14px}
+  .stats .ic{width:38px;height:38px}
+  .stats b{font-size:18px}
+  .stats span{font-size:12px}
+  .h2{font-size:26px}
+  .h1{font-size:32px}
+  .lead{font-size:16px}
+  .panel.lg{padding:22px 16px}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
