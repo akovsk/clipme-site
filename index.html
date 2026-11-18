@@ -120,6 +120,34 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .who2 b{font:800 15px var(--font-body);color:var(--mint);text-transform:uppercase;letter-spacing:.08em}
 .who2 b.v{color:var(--violet-text)}
 @media (max-width:640px){.who2{grid-template-columns:1fr}}
+/* hero logo: jumping 3D mark, a stack of dollar bills grows under it, then folds back */
+.hero h1.logo3d{margin:34px 0 0;padding-top:64px;text-transform:none;font-size:inherit;line-height:1}
+.hero h1.logo3d .mark-wrap{display:inline-grid}
+.hero h1.logo3d .word{display:inline-block}
+.mark-wrap{position:relative;display:inline-grid;place-items:end center;width:clamp(72px,10vw,120px);height:clamp(72px,10vw,120px);perspective:420px;flex:none}
+.mark-wrap svg{position:relative;z-index:2;width:100%;height:100%;filter:drop-shadow(0 16px 22px rgba(46,242,160,.4));animation:markJump 3.2s cubic-bezier(.3,.7,.3,1) infinite;transform-origin:50% 100%}
+.cash{position:absolute;left:8%;right:8%;bottom:-4px;height:100%;transform-style:preserve-3d;transform:rotateX(18deg);z-index:1}
+.cash i{position:absolute;left:0;right:0;bottom:calc(var(--i) * 11%);height:22%;border-radius:4px;display:grid;place-items:center;
+  font:800 clamp(10px,1.3vw,15px)/1 var(--font-mono);font-style:normal;color:#e9fff1;
+  background:linear-gradient(180deg,#3fe08e 0%,#1fae63 55%,#14864b 100%);border:1.5px solid #0b5e33;
+  box-shadow:0 3px 0 #0a4a29,inset 0 0 0 3px rgba(255,255,255,.18);
+  transform:rotateX(52deg) translateY(30px) scale(.6);opacity:0;animation:billPop 3.2s cubic-bezier(.3,.7,.3,1) infinite;animation-delay:calc(var(--i) * .07s)}
+.cash i:nth-child(even){translate:4% 0}
+.cash i:nth-child(3n){translate:-4% 0}
+@keyframes markJump{
+  0%{transform:translateY(0) scale(1,1)}
+  10%{transform:translateY(0) scale(1.08,.88)}
+  32%{transform:translateY(-78%) scale(.96,1.06) rotateY(180deg)}
+  44%{transform:translateY(-82%) scale(1,1) rotateY(360deg)}
+  70%{transform:translateY(-82%) scale(1,1) rotateY(360deg)}
+  86%{transform:translateY(0) scale(1.06,.92) rotateY(360deg)}
+  94%,100%{transform:translateY(0) scale(1,1) rotateY(360deg)}}
+@keyframes billPop{
+  0%,22%{opacity:0;transform:rotateX(52deg) translateY(30px) scale(.6)}
+  36%{opacity:1;transform:rotateX(52deg) translateY(-4px) scale(1.04)}
+  42%,70%{opacity:1;transform:rotateX(52deg) translateY(0) scale(1)}
+  84%,100%{opacity:0;transform:rotateX(52deg) translateY(30px) scale(.6)}}
+.t2-line{margin-top:6px;font:800 clamp(34px,7vw,92px)/1 var(--font-logo);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:2px var(--mint);filter:drop-shadow(0 0 22px var(--glow-mint))}
 .kicker{margin-top:22px;font:800 13px var(--font-body);letter-spacing:.32em;text-transform:uppercase;color:var(--text-2)}
 .hero-float{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;text-align:left;
   background:color-mix(in srgb,var(--surface-2) 88%,transparent);border:1px solid var(--border-strong);backdrop-filter:blur(10px);box-shadow:var(--shadow);font-size:13px;animation:bob 6s var(--ease) infinite}
@@ -651,8 +679,14 @@ footer a:hover{color:var(--text)}
     <div class="hero-float hf3" aria-hidden="true"><span class="ic">⏱</span><div><small>Холд перед выводом</small><b class="js-hold">7 дней</b></div></div>
     <div class="hero-copy">
       <p class="badge"><b>БЕТА</b>Оплата за просмотры в TikTok, Shorts, Reels и VK Клипах</p>
-      <div class="mark3d" aria-hidden="true"><svg><use href="#logo"/></svg></div>
-      <h1 id="hero-title" class="title"><span class="t1" data-text="CLIPME">CLIPME</span><span class="t2">ВЫПЛАТЫ</span></h1>
+      <h1 id="hero-title" class="logo3d">
+        <span class="mark-wrap" aria-hidden="true">
+          <span class="cash"><i style="--i:0">$</i><i style="--i:1">$</i><i style="--i:2">$</i><i style="--i:3">$</i><i style="--i:4">$</i><i style="--i:5">$</i></span>
+          <svg><use href="#logo"/></svg>
+        </span>
+        <span class="word">CLIPME</span><span class="sr"> — оплата за просмотры коротких видео</span>
+      </h1>
+      <p class="t2-line" aria-hidden="true">ВЫПЛАТЫ</p>
       <p class="kicker">Клипы · Охват · Выплаты</p>
       <p class="lead" style="margin-top:18px">CLIPME соединяет креаторов и рекламодателей. Оплата идёт за каждую 1&nbsp;000 проверенных просмотров коротких видео.</p>
       <ul class="who2">
