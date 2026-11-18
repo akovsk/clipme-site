@@ -11,7 +11,7 @@
 <meta name="description" content="Оплата за проверенные просмотры коротких видео и маркетплейс цифровых продуктов.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&family=Montserrat:wght@700;800;900&family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
 /* Layout: app shell — fixed sidebar (desktop) / sticky top bar (phone), hash-routed views in a 1180px column.
    Tokens follow the CLIPME brandbook «Ночной эфир»: dark-first, mint = money/action, violet = verification. */
@@ -29,8 +29,10 @@
   --shadow:0 24px 50px -24px rgba(0,0,0,.8);
   --card-a:#2a1d5c; --card-b:#0f3d2c; --card-c:#16264a; --card-end:#0b0b10;
   --scrim:rgba(0,0,0,.6);
-  --font-display:"Unbounded","Manrope",system-ui,sans-serif;
-  --font-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-display:"Montserrat","Onest",system-ui,sans-serif;
+  --font-body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-logo:"Unbounded","Montserrat",system-ui,sans-serif;
+  --logo-face:#effff7; --ex-1:#2ef2a0; --ex-2:#1fc583; --ex-3:#139463; --ex-4:#0a5f3f;
   --font-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
   --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px;
   --ease:cubic-bezier(.2,.8,.2,1);
@@ -91,7 +93,37 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- logo ---------- */
-.logo{display:inline-flex;align-items:center;gap:11px;font-family:var(--font-display);font-weight:800;font-size:25px;letter-spacing:-.01em;line-height:1}
+.logo{display:inline-flex;align-items:center;gap:11px;font-family:var(--font-logo);font-weight:800;font-size:25px;letter-spacing:-.01em;line-height:1;
+  text-shadow:1px 1px 0 var(--ex-1),2px 2px 0 var(--ex-2),3px 3px 0 var(--ex-3),4px 6px 10px rgba(0,0,0,.35)}
+/* big extruded 3D logo on the hero */
+.logo3d{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,22px);perspective:900px;margin-bottom:28px;flex-wrap:wrap}
+.logo3d svg{width:clamp(72px,10vw,120px);height:clamp(72px,10vw,120px);filter:drop-shadow(0 18px 24px rgba(46,242,160,.35));animation:spin3d 7s var(--ease) infinite;transform-style:preserve-3d}
+.logo3d .word{font:800 clamp(46px,9vw,112px)/1 var(--font-logo);letter-spacing:-.03em;color:var(--logo-face);transform:rotateX(16deg) rotateY(-8deg);animation:tilt3d 7s var(--ease) infinite;
+  text-shadow:1px 1px 0 var(--ex-1),2px 2px 0 var(--ex-1),3px 3px 0 var(--ex-2),4px 4px 0 var(--ex-2),5px 5px 0 var(--ex-3),6px 6px 0 var(--ex-3),7px 7px 0 var(--ex-4),8px 8px 0 var(--ex-4),10px 18px 28px rgba(0,0,0,.45)}
+@keyframes spin3d{0%,100%{transform:rotateY(-28deg) rotateX(10deg)}50%{transform:rotateY(28deg) rotateX(-6deg)}}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--logo-face:#0b0b0f}}
+:root[data-theme="light"]{--logo-face:#0b0b0f}
+/* centred text in cards, FAQ, join and cabinet headers */
+.card,.prod-body{text-align:center;align-items:center}
+.card-head{flex-direction:column;align-items:center}
+.card-head>div{justify-items:center}
+.card .foot,.prod .foot{justify-content:center;gap:14px;flex-wrap:wrap;width:100%}
+.prog{width:100%}
+.tags{justify-content:center}
+.note{justify-content:center;text-align:center}
+.faq{grid-template-columns:minmax(0,1fr)!important;max-width:860px;margin-inline:auto}
+.faq-side{position:static!important;text-align:center;justify-items:center}
+.q summary{text-align:center}
+.q .a{padding:0 24px 22px!important;text-align:center}
+#joinMain>div:first-child{text-align:center}
+.join-art{align-items:center;text-align:center}
+.mock-stack{justify-items:center}
+.mock-stack .mock:nth-child(2){margin-left:0}
+.cab-head{flex-direction:column;text-align:center}
+.cab-head .who{justify-items:center}
+.cab-head .who>div{justify-content:center}
+.ref p,.final p{text-align:center}
+@keyframes tilt3d{0%,100%{transform:rotateX(16deg) rotateY(-8deg)}50%{transform:rotateX(10deg) rotateY(8deg)}}
 .logo svg{width:40px;height:40px;filter:drop-shadow(0 6px 10px rgba(46,242,160,.35));transform:perspective(120px) rotateY(-14deg) rotateX(6deg);transition:transform .5s var(--ease)}
 .logo:hover svg{transform:perspective(120px) rotateY(14deg) rotateX(-4deg)}
 
@@ -578,6 +610,10 @@ footer a:hover{color:var(--text)}
 <div class="view" id="v-home">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
+      <div class="logo3d" aria-label="CLIPME" role="img">
+        <svg aria-hidden="true"><use href="#logo"/></svg>
+        <span class="word" aria-hidden="true">CLIPME</span>
+      </div>
       <p class="badge"><b>БЕТА</b>TikTok · Shorts · Reels · VK Клипы</p>
       <h1 id="hero-title"><span>Клипы.</span><span class="v">Охват.</span><span class="m">Выплаты.</span></h1>
       <p class="lead">Бренды платят за каждую 1&nbsp;000 проверенных просмотров. Креаторы получают деньги за ролики, которые эти просмотры набрали.</p>
@@ -729,14 +765,14 @@ footer a:hover{color:var(--text)}
 
   <section aria-labelledby="brands-home">
     <div class="panel lg" style="position:relative;overflow:hidden">
-      <div class="grid g2" style="gap:36px;align-items:start">
-        <div style="display:grid;gap:16px">
+      <div class="grid" style="gap:36px;justify-items:center;text-align:center">
+        <div style="display:grid;gap:16px;justify-items:center;max-width:720px">
           <p class="caption eyebrow">Брендам</p>
           <h2 class="h2" id="brands-home">Платите за просмотры, а не за обещания</h2>
           <p class="muted">Бюджет резервируется при запуске. Деньги списываются только за засчитанные просмотры, поэтому кампания не уйдёт в минус.</p>
           <div class="cta"><a class="btn secondary" href="#brands">Подробнее для брендов</a></div>
         </div>
-        <ul class="grid g2" id="featList"></ul>
+        <ul class="grid g4" id="featList" style="width:100%"></ul>
       </div>
     </div>
   </section>
