@@ -566,14 +566,29 @@ footer a:hover{color:var(--text)}
   .join-art{min-height:0;border-right:0;border-bottom:1px solid var(--border)}
   footer{grid-template-columns:1fr 1fr}
 }
-/* the sidebar stays open on the left everywhere except phones, where it becomes a drawer */
+/* на телефоне панель всегда видна слева — узкая колонка иконок, страница сдвинута вправо */
 @media (max-width:760px){
-  .side{transform:translateX(-105%);width:min(300px,86vw);box-shadow:20px 0 60px rgba(0,0,0,.5)}
-  body.menu .side{transform:none}
-  body.menu .overlay{opacity:1;pointer-events:auto}
-  .side-close{display:grid}
-  .topbar{display:flex}
-  .main{margin-left:0}
+  :root{--rail:64px}
+  .side{width:calc(var(--rail) + env(safe-area-inset-left,0px));transform:none}
+  .side-top{padding:16px 0 8px;justify-content:center}
+  .side-top .logo{font-size:0;gap:0}
+  .side-beta,.nav-label,.nav-item .pill,.side-close,.conn,.me div{display:none}
+  .side nav{padding:8px 8px}
+  .nav-item{font-size:0;gap:0;justify-content:center;padding:12px 0}
+  .nav-item.active::before{left:-8px}
+  .side-bottom{padding:10px 8px calc(12px + env(safe-area-inset-bottom,0px))}
+  .side-bottom .btn{font-size:0;gap:0;padding:0;height:44px}
+  .me{padding:6px;justify-content:center}
+  .overlay,.burger{display:none}
+  .main{margin-left:calc(var(--rail) + env(safe-area-inset-left,0px))}
+  .topbar{display:none}
+}
+@media (max-width:640px){
+  .wrap{padding-left:12px;padding-right:12px}
+  .hero{padding-left:14px!important;padding-right:14px!important}
+  .logo3d .word{font-size:calc((100vw - 64px) * .12)!important}
+  .logo3d svg{width:52px;height:52px}
+  .t2-line{font-size:calc((100vw - 64px) * .12)!important}
 }
 @media (max-width:640px){
   section+section{margin-top:72px}
