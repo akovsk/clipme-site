@@ -1277,7 +1277,7 @@ function route(){
   if(v==="admin") loadAdmin();
   if(v!=="join") S.editing=false;
   window.scrollTo({top:0});
-  setMenu(false);
+  if(!menuAuto) setMenu(false);
 }
 addEventListener("hashchange",route);
 document.addEventListener("click",e=>{
@@ -1286,6 +1286,10 @@ document.addEventListener("click",e=>{
 
 /* menu */
 function setMenu(open){ document.body.classList.toggle("menu",open); $("burger").setAttribute("aria-expanded",open); }
+/* на телефоне панель открыта по умолчанию — до первого действия пользователя */
+var menuAuto = matchMedia("(max-width:760px)").matches;
+if(menuAuto) setMenu(true);
+["pointerdown","keydown"].forEach(t=>addEventListener(t,()=>{ menuAuto=false; },{capture:true,once:true}));
 $("burger").onclick=()=>setMenu(true); $("sideClose").onclick=()=>setMenu(false); $("overlay").onclick=()=>setMenu(false);
 addEventListener("keydown",e=>{ if(e.key==="Escape") setMenu(false); });
 
